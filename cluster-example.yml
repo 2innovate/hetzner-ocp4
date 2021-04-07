@@ -57,7 +57,10 @@ cluster_role_bindings:
     name: login@redhat.com
   - cluster_role: cluster-admin
     name: admin
-
+#
+# haproxy stats port & password
+haproxy_stats_listen: "*:1984"
+haproxy_stats_password: supersecret
 
 image_pull_secret: |-
   asdfghfdsa

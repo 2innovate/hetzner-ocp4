@@ -18,6 +18,8 @@ ExecStart=/usr/bin/podman run --name {{ lb_name }} --net host \
   -e INGRESS_HTTPS_LISTEN={{ lb_ingress_https_listen }} \
   -e MACHINE_CONFIG_SERVER={{ lb_machine_config_server }} \
   -e MACHINE_CONFIG_SERVER_LISTEN={{ lb_machine_config_server_listen }} \
+  -e STATS_LISTEN={{ haproxy_stats_listen }} \
+  -e STATS_ADMIN_PASSWORD={{ haproxy_stats_password }} \
   quay.io/redhat-emea-ssa-team/openshift-4-loadbalancer
 
 ExecReload=-/usr/bin/podman stop "{{ lb_name }}"
