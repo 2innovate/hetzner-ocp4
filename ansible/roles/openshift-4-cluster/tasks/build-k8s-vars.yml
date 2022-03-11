@@ -18,8 +18,8 @@
 
 - name: Select cluster & user
   set_fact:
-    cluster: "{{ kubeconfig | json_query('clusters[?name==`'~ cluster_name ~'`].cluster') | first }}"
-    user: "{{ kubeconfig | json_query('users[?name==`admin`].user') | first }}"
+    cluster: "{{ kubeconfig.clusters | selectattr('name','equalto',cluster_name) | map(attribute='cluster') | first }}"
+    user: "{{ kubeconfig.users | selectattr('name','equalto','admin') | map(attribute='user') |  first }}"
 
 - name: Set kube variables
   set_fact:
